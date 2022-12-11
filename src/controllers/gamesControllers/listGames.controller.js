@@ -1,13 +1,19 @@
 import { connection } from "../../database/database.js";
 
+
 export async function listGames (req, res){
 
-    const name = res.query
+    const name = req.query.name
+
+    console.log(name)
 
     try{
-
         if(name){
-            const filteredGame = await connection.query("SELEC name FROM games WHERE name LIKE '$1%", [name])
+            const filteredGame = await connection.query(
+                `SELECT * FROM games WHERE name ILIKE $1`, [name + "%"]
+              );
+            console.log(filteredGame.rows)
+
             return res.send(filteredGame.rows)
         }
 

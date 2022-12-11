@@ -4,13 +4,13 @@ import { gameSchema } from "../models/game.model.js";
 export async function gameValidation(req, res, next) {
    const {name, image, stockTotal, pricePerDay, categoryId} = req.body;
 
-    //   const game = {
-    //     name:name,
-    //     image: image,
-    //     stockTotal: stockTotal,
-    //     pricePerDay: pricePerDay,
-    //     categoryId: categoryId
-    // }
+      const game = {
+        name:name,
+        image: image,
+        stockTotal: stockTotal,
+        pricePerDay: pricePerDay,
+        categoryId: categoryId
+    }
 
     try {
 
@@ -42,7 +42,7 @@ export async function gameValidation(req, res, next) {
        return res.status(500).send(`erro: ${err.message}`);
     }
   
-    res.locals = req.body;
+    res.locals = game;
     next();
   }
   
