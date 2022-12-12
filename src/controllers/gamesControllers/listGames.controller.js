@@ -3,14 +3,15 @@ import { connection } from "../../database/database.js";
 
 export async function listGames (req, res){
 
-    const name = req.query.name
-
-    console.log(name)
+    const gameName = req.query.name
 
     try{
-        if(name){
+        if(gameName){
             const filteredGame = await connection.query(
-                `SELECT * FROM games WHERE name ILIKE $1 JOIN categories ON games."categoryId" = categories.id`, [name + "%"]
+                `SELECT games.*, categories.name AS "categoryName" 
+                FROM games
+                JOIN categories ON games."categoryId" = categories.id
+                WHERE games.name ILIKE $1`, [gameName + "%"]
               );
 
             return res.send(filteredGame.rows)
