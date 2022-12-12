@@ -3,13 +3,13 @@ import { createCustomer } from "../controllers/userControllers/createCustomer.co
 import {customerValidation} from "../middlewares/customerValidation.middleware.js"
 import { updateCustomer } from "../controllers/userControllers/updateCustomer.controller.js";
 import { listCustomers } from "../controllers/userControllers/listCustomer.controller.js";
-
+import { findCustomer } from "../controllers/userControllers/findCustomer.controller.js";
 
 const router = Router();
 
 router.get("/customers", listCustomers)
 
-//router.get("/customers/:id", findCustomer)
+router.get("/customers/:id", findCustomer)
 
 router.post("/customers", customerValidation, createCustomer)
 
