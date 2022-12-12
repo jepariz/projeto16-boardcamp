@@ -36,9 +36,8 @@ export async function rentalValidation(req, res, next) {
           WHERE "gameId" = $1 AND "returnDate" IS NULL;`, [gameId])
 
           const gameStock = await connection.query(`SELECT "stockTotal" FROM games WHERE id=$1;`, [gameId])
-          console.log(gameStock.rows[0].stockTotal)
 
-          if(activeRentals.rowCount > gameStock.rows[0].stockTotal){
+          if(activeRentals.rowCount > (gameStock.rows[0].stockTotal - 1)){
             return res.status(400).send("Todos os exemplares desse jogo estão alugados");
           }
   
