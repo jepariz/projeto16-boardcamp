@@ -12,7 +12,6 @@ export async function listGames (req, res){
             const filteredGame = await connection.query(
                 `SELECT * FROM games WHERE name ILIKE $1`, [name + "%"]
               );
-            console.log(filteredGame.rows)
 
             return res.send(filteredGame.rows)
         }
