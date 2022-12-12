@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { createCustomer } from "../controllers/userControllers/createCustomer.controller.js";
+import { createCustomer } from "../controllers/customersControllers/createCustomer.controller.js";
 import {customerValidation} from "../middlewares/customerValidation.middleware.js"
-import { updateCustomer } from "../controllers/userControllers/updateCustomer.controller.js";
-import { listCustomers } from "../controllers/userControllers/listCustomer.controller.js";
-import { findCustomer } from "../controllers/userControllers/findCustomer.controller.js";
+import { updateCustomer } from "../controllers/customersControllers/updateCustomer.controller.js";
+import { listCustomers } from "../controllers/customersControllers/listCustomer.controller.js";
+import { findCustomer } from "../controllers/customersControllers/findCustomer.controller.js";
 
 const router = Router();
 
