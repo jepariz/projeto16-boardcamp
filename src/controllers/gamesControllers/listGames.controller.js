@@ -10,13 +10,13 @@ export async function listGames (req, res){
     try{
         if(name){
             const filteredGame = await connection.query(
-                `SELECT * FROM games WHERE name ILIKE $1`, [name + "%"]
+                `SELECT * FROM games WHERE name ILIKE $1 JOIN categories ON games."categoryId" = categories.id`, [name + "%"]
               );
 
             return res.send(filteredGame.rows)
         }
 
-        const games = await connection.query("SELECT * FROM games;")
+        const games = await connection.query(`SELECT games.*, categories.name AS "categoryName" FROM games JOIN categories ON games."categoryId" = categories.id;`)
         return res.send(games.rows)
 
     }catch (err){
