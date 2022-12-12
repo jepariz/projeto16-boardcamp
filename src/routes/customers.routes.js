@@ -2,10 +2,12 @@ import { Router } from "express";
 import { createCustomer } from "../controllers/userControllers/createCustomer.controller.js";
 import {customerValidation} from "../middlewares/customerValidation.middleware.js"
 import { updateCustomer } from "../controllers/userControllers/updateCustomer.controller.js";
+import { listCustomers } from "../controllers/userControllers/listCustomer.controller.js";
+
 
 const router = Router();
 
-//router.get("/customers", listCustomers)
+router.get("/customers", listCustomers)
 
 //router.get("/customers/:id", findCustomer)
 
