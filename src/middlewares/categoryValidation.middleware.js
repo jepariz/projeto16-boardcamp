@@ -10,7 +10,7 @@ export async function categoryValidation(req, res, next) {
       [name]
     );
 
-    if (categoryExists) {
+    if (categoryExists.rowCount > 0) {
      return res.sendStatus(409);
     }
 
