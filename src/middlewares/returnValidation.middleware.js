@@ -32,14 +32,19 @@ export async function returnValidation(req, res, next) {
       [id]
     );
     const rentDate = findRentDate.rows[0].to_char;
-
     const today = dayjs(currentDay);
     const fees = today.diff(rentDate, "day");
+
+    const gamePrice = rentalExists.rows[0].originalPrice / rentalExists.rows[0].daysRented
+
+    const delayFee = gamePrice * fees;
+
+    console.log(gamePrice)
 
     data = {
       id: req.params.id,
       returnDate: currentDay,
-      delayFee: fees,
+      delayFee: delayFee,
     };
   } catch (err) {
     return res.status(500).send(`erro: ${err.message}`);
